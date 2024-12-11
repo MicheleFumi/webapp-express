@@ -5,6 +5,9 @@ const port = process.env.PORT
 const movieRouter = require('./routes/movies.js')
 const NotFound = require('./middlewares/NotFound.js')
 const ServerErrorsHandler = require('./middlewares/ServerErrorsHandler')
+const cors = require('cors');
+
+app.use(cors())
 
 /* route dei film */
 server.use('/api/movies', movieRouter)
