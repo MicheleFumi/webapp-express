@@ -7,7 +7,7 @@ const NotFound = require('./middlewares/NotFound.js')
 const ServerErrorsHandler = require('./middlewares/ServerErrorsHandler')
 const cors = require('cors');
 
-app.use(cors())
+server.use(cors())
 
 /* route dei film */
 server.use('/api/movies', movieRouter)
