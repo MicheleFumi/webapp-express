@@ -34,7 +34,7 @@ function show(req, res) {
 
 function addReview(req, res) {
     const movie_id = Number(req.params.id)
-    const { name, vote, text } = req.body
+    const { username, vote, text } = req.body
 
     const now = new Date()
     const todayDate = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`
@@ -42,7 +42,7 @@ function addReview(req, res) {
     const sql = "INSERT INTO `reviews` SET movie_id=?, name=?, vote=?, text=?, created_at=?, updated_at=?"
     console.log(req.body);
 
-    connection.query(sql, [movie_id, name, vote, text, todayDate, todayDate], (err, response) => {
+    connection.query(sql, [movie_id, username, vote, text, todayDate, todayDate], (err, response) => {
         if (err) return res.status(500).json({ error: err })
         return res.status(201).json({ success: true, response })
 
