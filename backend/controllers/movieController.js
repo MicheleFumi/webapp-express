@@ -41,6 +41,17 @@ function addReview(req, res) {
 
     const sql = "INSERT INTO `reviews` SET movie_id=?, name=?, vote=?, text=?, created_at=?, updated_at=?"
     console.log(req.body);
+    if (!username || username.length < 5) {
+        return res.status(400).json({ error: 'Username must be at least 5 characters long.' });
+    }
+
+    if (!text || text.length < 15) {
+        return res.status(400).json({ error: 'Text must be at least 15 characters long.' });
+    }
+
+    if (!vote || vote === 0) {
+        return res.status(400).json({ error: 'Vote is required and must be greater than 0.' });
+    }
 
     connection.query(sql, [movie_id, username, vote, text, todayDate, todayDate], (err, response) => {
         if (err) return res.status(500).json({ error: err })
