@@ -15,7 +15,7 @@ function index(req, res) {
 function show(req, res) {
     const id = req.params.id
     const getAllMovies = `SELECT * FROM movies WHERE id=?`
-    const reviewsql = `SELECT * FROM reviews WHERE movie_id=?`
+    const reviewsql = `SELECT * FROM reviews WHERE movie_id = ? ORDER BY id DESC`
     connection.query(getAllMovies, [id], (err, results) => {
         if (err) return res.status(500).json({ err: err })
         if (results.length == 0) return res.status(404).json({ err: 'sorry, nothing to see here yet!' })
