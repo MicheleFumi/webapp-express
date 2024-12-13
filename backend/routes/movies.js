@@ -8,4 +8,6 @@ router.get('/', movieController.index);
 /* mostra il film singolo con i commenti correlati */
 router.get('/:id', movieController.show);
 
+router.post('/:id/review', movieController.addReview)
+
 module.exports = router;
