@@ -37,10 +37,11 @@ function addReview(req, res) {
     const { username, vote, text } = req.body
 
     const now = new Date()
-    const todayDate = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`
+    const todayDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
 
     const sql = "INSERT INTO `reviews` SET movie_id=?, name=?, vote=?, text=?, created_at=?, updated_at=?"
     console.log(req.body);
+
     if (!username || username.length < 5) {
         return res.status(400).json({ error: 'Username must be at least 5 characters long.' });
     }
